@@ -69,16 +69,6 @@ public class Main {
         t3.start();
     }
 }
-```
-
-## Limitations
-
-- `get` is not synchronized: it's eventually consistent and may return stale data if not combined with external synchronization.
-- Lock cleanup in `remove` is basic and assumes key removal happens less frequently.
-
----
-
-```java
 
 public class ConcurrentMap<K, V> {
 
@@ -139,3 +129,10 @@ public class ConcurrentMap<K, V> {
 	}
 }
 ```
+
+## Limitations
+
+- `get` is not synchronized: it's eventually consistent and may return stale data if not combined with external synchronization.
+- Lock cleanup in `remove` is basic and assumes key removal happens less frequently.
+
+---
