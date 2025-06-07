@@ -25,14 +25,15 @@ Using a separate lock for each key allows:
 - **Serialized access to the same key**, ensuring thread safety without unnecessary blocking.
 
 ### How lock-per-key works?
-	- You maintain a map of locks, one lock per key.
-	- When a thread wants to operate on a key, it:
-		1. Gets the lock for that key.
-		2. Acquires that lock (locks it).
-		3. Performs the operation (e.g., put, remove).
-		4. Releases the lock (unlocks it).
-	- Since each key has its own lock, threads working on different keys don’t block each other.
-	- But threads working on the same key must wait for each other — ensuring serialized access per key.
+
+- You maintain a map of locks, one lock per key.
+- When a thread wants to operate on a key, it:
+	1. Gets the lock for that key.
+	2. Acquires that lock (locks it).
+	3. Performs the operation (e.g., put, remove).
+	4. Releases the lock (unlocks it).
+- Since each key has its own lock, threads working on different keys don’t block each other.
+- But threads working on the same key must wait for each other — ensuring serialized access per key.
 
 ## Potential Bottleneck
 
@@ -40,9 +41,9 @@ While per-key locking improves concurrency, creating/retrieving a lock still req
 
 ### What’s happening with locksMutex?
 
-	- The locksMutex is a single global lock used to safely access and modify the locks map which stores per-key locks.
-	- So, whenever any thread wants to get or create a lock for a key, it has to acquire this global locksMutex first.
-	- This means all threads serially access the locks map itself, even if they want locks for different keys.
+- The locksMutex is a single global lock used to safely access and modify the locks map which stores per-key locks.
+- So, whenever any thread wants to get or create a lock for a key, it has to acquire this global locksMutex first.
+- This means all threads serially access the locks map itself, even if they want locks for different keys.
 
 ## Example Usage
 
