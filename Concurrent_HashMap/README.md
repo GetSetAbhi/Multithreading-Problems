@@ -45,6 +45,11 @@ While per-key locking improves concurrency, creating/retrieving a lock still req
 - So, whenever any thread wants to get or create a lock for a key, it has to acquire this global locksMutex first.
 - This means all threads serially access the locks map itself, even if they want locks for different keys.
 
+### Why *computeIfAbsent* ?
+
+The purpose of computeIfAbsent in Java is to compute and insert a value for a key if it is not already present in a Map. 
+It's a thread-safe and atomic way to avoid race conditions during "check-then-act" logic.
+
 ## Example Usage
 
 ```java
