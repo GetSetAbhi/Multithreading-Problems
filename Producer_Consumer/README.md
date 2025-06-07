@@ -1,5 +1,7 @@
 # 🧵 Producer-Consumer Problem in Java (Using `wait()`/`notifyAll()`)
 
+I have added a maven project which can be directly imported for use.
+
 ## ✅ Problem Statement
 
 The **Producer-Consumer** problem is a classic concurrency scenario where:
@@ -122,7 +124,6 @@ especially when dealing with **bounded buffers** or **multiple producers and con
 
 
 ```
-import java.util.concurrent.Semaphore;
 
 class SharedResource {
     private int data;
