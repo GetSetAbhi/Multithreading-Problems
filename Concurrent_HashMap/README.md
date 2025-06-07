@@ -24,7 +24,7 @@ Using a separate lock for each key allows:
 - **Concurrent access to different keys**, improving throughput.
 - **Serialized access to the same key**, ensuring thread safety without unnecessary blocking.
 
-###How lock-per-key works?
+### How lock-per-key works?
 	- You maintain a map of locks, one lock per key.
 	- When a thread wants to operate on a key, it:
 		1. Gets the lock for that key.
