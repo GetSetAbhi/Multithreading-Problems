@@ -15,8 +15,6 @@ The **MemoryLimitedChunk** project demonstrates a simple asynchronous file reade
 
 To understand the code here, it helps to know what a **BufferedReader** is and how it works.
 
----
-
 ## Purpose of BufferedReader
 
 Instead of reading one character at a time from a file or stream (which is slow),  
@@ -58,6 +56,14 @@ A mechanism to slow down or pause the input when the system is overwhelmed.
 **Example:**  
 You have 3 consumer threads processing files concurrently, each taking files from a queue of capacity 5.  
 If more than 5 files arrive while the consumers are busy, producers will block until space is available — this is backpressure in action.
+
+At any moment in below example:
+
+- 3 files are actively being processed by the 3 consumer threads (thread pool size = 3).
+- 5 files can wait in the bounded queue (capacity = 5).
+
+So, the system can hold up to 8 files simultaneously — either processing or waiting in queue.
+
 
 ```java
 import java.util.concurrent.*;
