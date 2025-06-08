@@ -41,20 +41,17 @@ public class FileReaderService {
 	}
 	
 	private void readFileContents(String filePath) {
-		BufferedReader bf;
-		try {
-			bf = new BufferedReader(
-					new InputStreamReader(ClassLoader.getSystemResourceAsStream(filePath)));
+		try (BufferedReader bf = new BufferedReader(
+					new InputStreamReader(ClassLoader.getSystemResourceAsStream(filePath)))){
 			String line;
 			StringBuilder builder = new StringBuilder();
 			while ((line = bf.readLine()) != null) {
-				builder.append(line + "\n");
+				builder.append(line).append("\n");
 				System.out.println(line);
 			}
 			if (!builder.isEmpty()) {
 				writerService.assembleFile(builder.toString());
 			}
-			bf.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,10 +66,12 @@ public class FileReaderService {
 				if (!this.service.awaitTermination(10, TimeUnit.SECONDS)) {
 					this.service.shutdownNow();
 				}
+				this.readerThread.interrupt();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+		
 	}
 
 	public void setWriterService(FileWriterService writerService) {
