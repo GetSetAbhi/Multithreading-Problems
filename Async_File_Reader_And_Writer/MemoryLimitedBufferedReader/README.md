@@ -1,5 +1,7 @@
 # Reading a file chunk asynchronously
 
+'MemoryLimitedChink' project demonstrates a simple asynchronous file reader in which we set a configurable chunk limit on buffered reader.
+
 To understand the code in this project we first need have an understanding of BufferedReader.
 
 ## Purpose of BufferedReader
