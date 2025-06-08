@@ -1,7 +1,7 @@
 # 📂 Async File Reader & Writer in Java
 
 If you want to check a case where we limit our BufferedReader to a certain size of memory 
-then check out [MemoryLimitedChunk](memorylimited.md) project.
+then check out [MemoryLimitedChunk](MemoryLimitedBufferedReader/) project.
 
 'async-file-reader' project demonstrates a simple asynchronous file reader and writer system built in **pure Java**.
 
